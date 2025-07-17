@@ -1,0 +1,40 @@
+{
+  "name" : "ETL Glue job -1 ",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::726661502634:role/GlueETLrole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://my-stagingdata-1/Script/ETL Glue job -1 .py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://my-stagingdata-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://my-stagingdata-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1752598971726\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://my-rawdata-1/financial_raw data.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Amazon S3\",\"OptimizePerformance\":false,\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"company\",\"Type\":\"string\"},{\"Name\":\"revenue\",\"Type\":\"string\"},{\"Name\":\"expenses\",\"Type\":\"string\"},{\"Name\":\"profit\",\"Type\":\"string\"},{\"Name\":\"region\",\"Type\":\"string\"},{\"Name\":\"currency\",\"Type\":\"string\"},{\"Name\":\"notes\",\"Type\":\"string\"},{\"Name\":\"profit margin\",\"Type\":\"string\"},{\"Name\":\"approval status\",\"Type\":\"string\"}]}],\"Paths\":[\"s3://my-rawdata-1/financial_raw data.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1752681926167\":{\"S3DirectTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1752680583981\",\"IsEnabled\":true},\"Compression\":\"none\",\"Format\":\"csv\",\"Inputs\":[\"node-1752681476228\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://my-stagingdata-1\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false,\"UpdateBehavior\":\"UPDATE_IN_DATABASE\"}}},\"node-1752681476228\":{\"DropDuplicates\":{\"Columns\":[],\"Inputs\":[\"node-1752598971726\"],\"Name\":\"Drop Duplicates\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "ETl--S3-raw-to-S3-curated",
+    "branch" : "main",
+    "folder" : "ETL Glue job -1 "
+  }
+}
