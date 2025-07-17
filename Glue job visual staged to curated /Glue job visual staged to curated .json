@@ -1,0 +1,34 @@
+{
+  "name" : "Glue job visual staged to curated ",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::726661502634:role/GlueETLrole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "pythonshell",
+    "scriptLocation" : "s3://my-curateddata-1/scripts/Glue job visual staged to curated .py",
+    "pythonVersion" : "3.9"
+  },
+  "defaultArguments" : {
+    "--enable-job-insights" : "false",
+    "--job-language" : "python",
+    "--TempDir" : "s3://my-curateddata-1/temporary/",
+    "--enable-observability-metrics" : "false",
+    "--enable-glue-datacatalog" : "true",
+    "library-set" : "analytics"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 0,
+  "timeout" : 2880,
+  "maxCapacity" : 1.0,
+  "glueVersion" : "3.0",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "ETl--S3-raw-to-S3-curated",
+    "branch" : "main",
+    "folder" : "Glue job visual staged to curated "
+  }
+}
